@@ -133,8 +133,38 @@
 
         <div class="signature">
             <h3>Assinatura</h3>
-            <canvas id="signatureCanvas"></canvas>
+            <canvas id="signatureCanvas" width="400" height="200" style="border:1px solid #000;"></canvas>
         </div>
+        
+        <script>
+            const canvas = document.getElementById('signatureCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            let drawing = false;
+        
+            canvas.addEventListener('mousedown', (event) => {
+                drawing = true;
+                ctx.beginPath();
+                ctx.moveTo(event.offsetX, event.offsetY);
+            });
+        
+            canvas.addEventListener('mousemove', (event) => {
+                if (drawing) {
+                    ctx.lineTo(event.offsetX, event.offsetY);
+                    ctx.stroke();
+                }
+            });
+        
+            canvas.addEventListener('mouseup', () => {
+                drawing = false;
+                ctx.closePath();
+            });
+        
+            canvas.addEventListener('mouseleave', () => {
+                drawing = false;
+                ctx.closePath();
+            });
+        </script>
 
         <div class="button-group">
             <button onclick="validarEImprimir()">Impressão Módulo Oficina</button>
