@@ -131,100 +131,10 @@
             <button onclick="marcarTodas('naoSeAplica')">Marcar Todas Não se Aplica</button>
         </div>
 
-        <!DOCTYPE html>
-        <html lang="pt-BR">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Assinatura</title>
-            <style>
-                body {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    height: 100vh;
-                    margin: 0;
-                    font-family: Arial, sans-serif;
-                }
-                .signature {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                    border: 1px solid #ccc;
-                    padding: 10px;
-                    border-radius: 5px;
-                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-                }
-                h3 {
-                    font-size: 16px; /* Diminuindo a fonte */
-                    margin: 5px 0; /* Ajustando margens */
-                }
-                canvas {
-                    border: 1px solid #000;
-                    margin: 5px 0; /* Espaço ajustado */
-                }
-                button {
-                    margin-top: 10px;
-                    padding: 5px 15px;
-                    font-size: 14px; /* Ajustando o tamanho do botão */
-                }
-            </style>
-        </head>
-        <body>
-        
         <div class="signature">
             <h3>Assinatura</h3>
-            <canvas id="signatureCanvas" width="400" height="200"></canvas>
-            <button id="clearButton">Limpar Assinatura</button>
+            <canvas id="signatureCanvas"></canvas>
         </div>
-        
-        <script>
-            const canvas = document.getElementById('signatureCanvas');
-            const ctx = canvas.getContext('2d');
-            
-            let drawing = false;
-        
-            // Configurações de estilo da assinatura
-            ctx.strokeStyle = 'black'; // Cor da linha
-            ctx.lineWidth = 2; // Largura da linha
-        
-            // Inicia o desenho
-            canvas.addEventListener('mousedown', (event) => {
-                drawing = true;
-                ctx.beginPath();
-                ctx.moveTo(event.offsetX, event.offsetY);
-            });
-        
-            // Desenha enquanto o mouse se move
-            canvas.addEventListener('mousemove', (event) => {
-                if (drawing) {
-                    ctx.lineTo(event.offsetX, event.offsetY);
-                    ctx.stroke();
-                }
-            });
-        
-            // Para o desenho ao soltar o mouse
-            canvas.addEventListener('mouseup', () => {
-                drawing = false;
-                ctx.closePath();
-            });
-        
-            // Para o desenho ao sair do canvas
-            canvas.addEventListener('mouseleave', () => {
-                drawing = false;
-                ctx.closePath();
-            });
-        
-            // Função para limpar a assinatura
-            document.getElementById('clearButton').addEventListener('click', () => {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-            });
-        </script>
-        
-        </body>
-        </html>
-        
 
         <div class="button-group">
             <button onclick="validarEImprimir()">Impressão Módulo Oficina</button>
