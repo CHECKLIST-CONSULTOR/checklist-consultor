@@ -138,28 +138,36 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Assinatura</title>
             <style>
+                body {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100vh;
+                    margin: 0;
+                    font-family: Arial, sans-serif;
+                }
                 .signature {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
                     justify-content: center;
-                    margin: 20px;
                     border: 1px solid #ccc;
                     padding: 10px;
                     border-radius: 5px;
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
                 }
                 h3 {
-                    font-size: 18px; /* Diminuindo a fonte */
-                    margin: 0; /* Removendo a margem padrão */
+                    font-size: 16px; /* Diminuindo a fonte */
+                    margin: 5px 0; /* Ajustando margens */
                 }
                 canvas {
                     border: 1px solid #000;
-                    margin: 5px 0; /* Reduzindo o espaço acima e abaixo do canvas */
+                    margin: 5px 0; /* Espaço ajustado */
                 }
                 button {
                     margin-top: 10px;
                     padding: 5px 15px;
-                    font-size: 16px;
+                    font-size: 14px; /* Ajustando o tamanho do botão */
                 }
             </style>
         </head>
