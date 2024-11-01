@@ -131,11 +131,40 @@
             <button onclick="marcarTodas('naoSeAplica')">Marcar Todas Não se Aplica</button>
         </div>
 
-        <div class="signature" style="text-align: center;">
+        <!DOCTYPE html>
+        <html lang="pt-BR">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Assinatura</title>
+            <style>
+                .signature {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 20px;
+                    border: 1px solid #ccc;
+                    padding: 10px;
+                    border-radius: 5px;
+                }
+                canvas {
+                    border: 1px solid #000;
+                    margin-bottom: 10px;
+                }
+                button {
+                    margin-top: 10px;
+                    padding: 5px 15px;
+                    font-size: 16px;
+                }
+            </style>
+        </head>
+        <body>
+        
+        <div class="signature">
             <h3>Assinatura</h3>
-            <canvas id="signatureCanvas" width="400" height="200" style="border:1px solid #000; display: block; margin: 0 auto;"></canvas>
-            <br>
-            <button id="clearButton" style="margin-top: 10px;">Limpar Assinatura</button>
+            <canvas id="signatureCanvas" width="400" height="200"></canvas>
+            <button id="clearButton">Limpar Assinatura</button>
         </div>
         
         <script>
@@ -180,6 +209,9 @@
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
             });
         </script>
+        
+        </body>
+        </html>
         
 
         <div class="button-group">
