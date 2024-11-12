@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cupom NFC-e</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            margin: 0;
+            padding: 0;
+        }
+        .center {
+            text-align: center;
+        }
+        .left {
+            text-align: left;
+        }
+        .right {
+            text-align: right;
+        }
+        .bold {
+            font-weight: bold;
+        }
+        .header {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .line {
+            border-top: 1px solid #000;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        .footer {
+            font-size: 10px;
+            text-align: center;
+        }
+        .qr-code {
+            margin-top: 10px;
+            text-align: center;
+        }
+        .item {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <div class="center header">
+        <img src="logo_nfc-e.png" alt="Logo NFC-e" width="120"><br>
+        <strong>Nome da Empresa</strong><br>
+        CNPJ: 12.345.678/0001-90<br>
+        Inscrição Estadual: 123456789<br>
+        Endereço: Rua Exemplo, 123 - Cidade/UF<br>
+        Telefone: (11) 1234-5678
+    </div>
+
+    <div class="line"></div>
+
+    <!-- Dados da NFC-e -->
+    <div class="left">
+        <strong>NFC-e: </strong> 12345678901234567890123456789012345678901234<br>
+        <strong>Data/Hora: </strong> 07/11/2024 10:25<br>
+        <strong>Chave de Acesso: </strong> 12345678901234567890123456789012345678901234<br>
+    </div>
+
+    <div class="line"></div>
+
+    <!-- Detalhamento dos Produtos -->
+    <div class="left">
+        <strong>Produtos:</strong><br>
+        <div class="item">Produto A - 2 x R$ 10,00 = R$ 20,00</div>
+        <div class="item">Produto B - 1 x R$ 15,00 = R$ 15,00</div>
+    </div>
+
+    <div class="line"></div>
+
+    <!-- Totais -->
+    <div class="left">
+        <strong>Total da Venda:</strong> R$ 35,00<br>
+        <strong>Forma de Pagamento:</strong> Cartão de Crédito<br>
+        <strong>Impostos:</strong> ICMS (R$ 5,00)
+    </div>
+
+    <div class="line"></div>
+
+    <!-- QR Code para consulta -->
+    <div class="qr-code">
+        <strong>QR Code para consulta online:</strong><br>
+        <img src="qrcode.png" alt="QR Code">
+    </div>
+
+    <div class="line"></div>
+
+    <!-- Rodapé -->
+    <div class="footer">
+        ** Obrigado pela preferência! **<br>
+        Consulte a sua NFC-e no portal da SEFAZ
+    </div>
+
+</body>
+</html>

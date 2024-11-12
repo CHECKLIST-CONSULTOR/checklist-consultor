@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo de Preço de Venda</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input {
+            margin-top: 5px;
+            padding: 8px;
+            width: 100%;
+            max-width: 300px;
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: darkblue;
+        }
+        .resultado {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .ingrediente {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Cálculo de Preço de Venda de Refeições</h1>
+
+<label for="mesa">Número da Mesa:</label>
+<input type="number" id="mesa" placeholder="Ex: 5" required>
+
+<label for="garcom">Nome do Garçom:</label>
+<input type="text" id="garcom" placeholder="Ex: João" required>
+
+<label for="nomePrato">Nome do Prato:</label>
+<input type="text" id="nomePrato" placeholder="Ex: Lasanha" required>
+
+<div id="ingredientesContainer">
+    <label>Ingredientes:</label>
+    <div class="ingrediente">
+        <input type="text" placeholder="Ingrediente" required>
+        <input type="number" placeholder="Custo (R$)" required>
+    </div>
+</div>
+<button onclick="adicionarIngrediente()">Adicionar Ingrediente</button>
+
+<label for="despesasOperacionais">Despesas Operacionais por Refeição (R$):</label>
+<input type="number" id="despesasOperacionais" placeholder="Ex: 10" required>
+
+<label for="margemLucro">Margem de Lucro Desejada (%):</label>
+<input type="number" id="margemLucro" placeholder="Ex: 25" required>
+
+<button onclick="calcularPreco()">Calcular Preço de Venda</button>
+<button onclick="limparCampos()">Limpar Conteúdo</button>
+
+<div class="resultado" id="resultado"></div>
+
+<script>
+    function adicionarIngrediente() {
+        const container = document.getElementById('ingredientesContainer');
+        const ingredienteDiv = document.createElement('div');
+        ingredienteDiv.classList.add('ingrediente');
+
+        const ingredienteInput = document.createElement('input');
+        ingredienteInput.type = 'text';
+        ingredienteInput.placeholder = 'Ingrediente';
+        ingredienteInput.required = true;
+
+        const custoInput = document.createElement('input');
+        custoInput.type = 'number';
+        custoInput.placeholder = 'Custo (R$)';
+        custoInput.required = true;
+
+        ingredienteDiv.appendChild(ingredienteInput);
+        ingredienteDiv.appendChild(custoInput);
+        container.appendChild(ingredienteDiv);
+    }
+
+    function calcularPreco() {
+        const mesa = document.getElementById('mesa').value;
+        const garcom = document.getElementById('garcom').value;
+        const nomePrato = document.getElementById('nomePrato').value;
+        const despesasOperacionais = parseFloat(document.getElementById('despesasOperacionais').value);
+        const margemLucro = parseFloat(document.getElementById('margemLucro').value) / 100;
+
+        let custoTotal = despesasOperacionais;
+        const ingredientes = [];
+
+        const ingredientesDivs = document.querySelectorAll('.ingrediente');
+        ingredientesDivs.forEach(div => {
+            const ingrediente = div.children[0].value;
+            const custo = parseFloat(div.children[1].value);
+            ingredientes.push({ ingrediente, custo });
+            custoTotal += custo;
+        });
+
+        const precoVenda = custoTotal / (1 - margemLucro);
+
+        // Formatação de valores
+        const precoFormatado = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(precoVenda);
+        const custoFormatado = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(custoTotal);
+        const margemFormatada = new Intl.NumberFormat('pt-BR', { style: 'percent', minimumFractionDigits: 0 }).format(margemLucro);
+
+        // Data e hora atual
+        const dataHoraAtual = new Date().toLocaleString('pt-BR');
+
+        document.getElementById('resultado').innerText = 
+            `Mesa: ${mesa}\n` +
+            `Garçom: ${garcom}\n` +
+            `Nome do Prato: ${nomePrato}\n` +
+            `Ingredientes:\n` + ingredientes.map(i => `- ${i.ingrediente}: ${new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(i.custo)}`).join('\n') + '\n' +
+            `Preço de Venda: ${precoFormatado}\n` +
+            `Custo Total: ${custoFormatado}\n` +
+            `Margem de Lucro: ${margemFormatada}\n` +
+            `Data e Hora da Consulta: ${dataHoraAtual}`;
+    }
+
+    function limparCampos() {
+        document.getElementById('mesa').value = '';
+        document.getElementById('garcom').value = '';
+        document.getElementById('nomePrato').value = '';
+        document.getElementById('despesasOperacionais').value = '';
+        document.getElementById('margemLucro').value = '';
+        document.getElementById('resultado').innerText = '';
+        document.getElementById('ingredientesContainer').innerHTML = `
+            <label>Ingredientes:</label>
+            <div class="ingrediente">
+                <input type="text" placeholder="Ingrediente" required>
+                <input type="number" placeholder="Custo (R$)" required>
+            </div>`;
+    }
+</script>
+
+</body>
+</html>

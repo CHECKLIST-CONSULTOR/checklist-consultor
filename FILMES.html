@@ -1,0 +1,30 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
+function App() {
+  const [content, setContent] = useState([]);
+
+  useEffect(() => {
+    // Fazendo a requisição para obter os filmes, séries e animes
+    axios.get('http://localhost:3000/content')
+      .then(response => setContent(response.data))
+      .catch(error => console.error('Erro ao buscar conteúdo', error));
+  }, []);
+
+  return (
+    <div>
+      <h1>Plataforma de Streaming</h1>
+      <div className="content-list">
+        {content.map(item => (
+          <div key={item.id} className="content-item">
+            <h3>{item.title}</h3>
+            <p>{item.genre}</p>
+            <a href={item.videoUrl} target="_blank" rel="noopener noreferrer">Assistir</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default App;
